@@ -1,1 +1,1 @@
-# A Distination app
+# A Destination app
