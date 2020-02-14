@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <img src="https://raw.githubusercontent.com/GSA/logo/master/state.png" width="150px"  alt="" />
     <h1 class="">{{ title }}</h1>
     <Destinations />
   </div>
@@ -36,6 +37,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin-top: 30px;
 }
 
 /* BUTTON */
@@ -53,6 +55,12 @@ body {
   width: 32%;
 }
 
+.destination-button-wrapper:hover {
+  cursor: pointer;
+}
+
+.destination__content .icon-close,
+.destination-button-wrapper .icon-minus,
 .destination-button-wrapper .icon-plus {
   position: absolute;
   top: 20px;
@@ -75,6 +83,11 @@ body {
   margin: 2px;
   padding: 20px;
   width: 100%;
+  transition: all .3s ease-in-out;
+}
+
+.button--favorite {
+  background-color: #4682b4; /* steelblue; */
 }
 
 .button--destination:hover {
@@ -132,26 +145,37 @@ body {
   transform: scale(.8);
 }
 
-.destination__details {
+.destination__content {
   background-color: #f2f2f2;
   border: solid 1px #666;
   margin: 0 auto;
   max-width: 800px;
   opacity: 0;
   padding: 40px;
+  position: relative;
   transition: all .3s ease-in-out;
 }
 
-.destination__details-content {
+.destination__content.favorite {
+  border: solid 5px #4682b4;
+}
+
+.destination__content-inner {
   overflow-y: scroll;
   text-align: left;
   height: 600px;
 }
 
-.destination__details.active {
+.destination__content.active {
   opacity: 1;
   transform: translateY(-770px);
   transition: all .3s ease-in-out;
+}
+
+.no-results {
+  padding: 100px;
+  text-align: center;
+  width: 100%;
 }
 
 </style>

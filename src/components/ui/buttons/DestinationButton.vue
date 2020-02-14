@@ -1,8 +1,17 @@
 <template>
   <div class="destination-button-wrapper">
-    <IconPlus />
+    <component
+      :is="dynamicActionIconComp"
+      @click.native="$emit('update-favorite', {
+        id: item.id,
+        type: !item.isFavorite ? 'add' : 'remove',
+      })"
+    />
     <button
       class="button button--destination"
+      :class="{
+        'button--favorite': item.isFavorite,
+      }"
       @click="$emit('show-active-list-index-detail', item.index)"
     > 
       <span>
@@ -27,6 +36,7 @@ import VueTypes from 'vue-types';
 
 import IconLocation from '@/components/ui/icons/IconLocation';
 import IconPlus from '@/components/ui/icons/IconPlus';
+import IconMinus from '@/components/ui/icons/IconMinus';
 
 export default {
   name: 'DestinationButton',
@@ -34,10 +44,17 @@ export default {
   components: {
     IconLocation,
     IconPlus,
+    IconMinus,
   },
   
   props: {
     item: VueTypes.object.def(() => {}),
+  },
+  
+  computed: {
+    dynamicActionIconComp() {
+      return this.item.isFavorite ? 'IconMinus' : 'IconPlus';
+    },
   },
 };
 </script>
